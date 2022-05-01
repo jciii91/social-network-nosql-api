@@ -17,7 +17,8 @@ const UserSchema = new Schema(
         thoughts: {
             type: Array,
             default: []
-        }
+        },
+        friends: [this]
     }
 );
 
