@@ -96,7 +96,18 @@ const thoughtController = {
                 res.json(dbThoughtData);
             })
             .catch(err => res.json(err));
+    },
+
+    // remove reaction
+    removeReaction({ params }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $pull: { reactions: { reactionId: params.reactionId } } },
+            { new: true }
+        )
+        .then(dbThoughtData => res.json(dbThoughtData))
+        .catch(err => res.json(err))
     }
-}
+};
 
 module.exports = thoughtController;
